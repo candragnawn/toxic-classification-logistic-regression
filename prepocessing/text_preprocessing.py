@@ -1,7 +1,11 @@
 import re
 import nltk
+from nltk.tokenize import word_tokenize
 nltk.download('punkt')
 nltk.download('stopwords')
+
+nltk.download('tokenizers/punkt/english.pickle')
+
 
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
@@ -17,6 +21,7 @@ class TextPreprocessor:
         text = text.lower()
         text = re.sub(r'\n', ' ', text)
         text = re.sub(r'[^a-zA-Z\s]', '', text)
+
 
         return text
 
