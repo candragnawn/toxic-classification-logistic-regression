@@ -12,4 +12,3 @@ class TextVectorizer:
     
     def get_feature_names(self):
         return self.vectorizer.get_feature_names_out()
-
