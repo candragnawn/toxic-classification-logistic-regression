@@ -9,7 +9,6 @@ from nltk.stem import WordNetLemmatizer
 import contractions
 
 
-nltk.download('tokenizers/punkt/english.pickle')
 
 
 from nltk.tokenize import word_tokenize
@@ -52,3 +51,33 @@ class TextPreprocessor:
         tokens = self.remove_stopwords(tokens)
 
         return ' '.join(tokens)
+
+class TextPreprocessorNonStopword:
+
+    def __init__(self):
+        self.stop_words = set(stopwords.words('english'))
+
+
+    def clean_text(self, text):
+        text = text.lower()
+        text = re.sub(r'\n', ' ', text)
+        text = re.sub(r'[^a-zA-Z\s]', '', text)
+
+
+        return text
+
+    def tokenize_text(self, text):
+        return word_tokenize(text)
+
+    def remove_stopwords(self, tokens):
+        return [
+            word for word in tokens
+            if word not in self.stop_words
+        ]
+
+    def preprocess_text_non_stopword(self, text):
+        text = self.clean_text(text)
+        tokens = self.tokenize_text(text)
+
+        return ' '.join(tokens)
+
