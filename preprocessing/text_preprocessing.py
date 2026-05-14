@@ -26,9 +26,6 @@ class TextPreprocessor:
         text = re.sub(r'\n', ' ', text)
         text = re.sub(r'[^a-zA-Z\s]', '', text)
         return text
-    
-    def expand_contraction(self, text):
-        return contractions.fix(text)
 
     def tokenize_text(self, text):
         return word_tokenize(text)
@@ -39,15 +36,18 @@ class TextPreprocessor:
             if word not in self.stop_words
         ]
     
+    def expand_contraction(self, text):
+        return contractions.fix(text)
+    
     def lemmatize_tokens(self, tokens):
         lemmatizer = WordNetLemmatizer()
         return [lemmatizer.lemmatize(token) for token in tokens]
 
     def preprocess_text(self, text):
-        text = self.clean_text(text)
         text = self.expand_contraction(text)
-        text = self.lemmatize_tokens(text)
+        text = self.clean_text(text)
         tokens = self.tokenize_text(text)
+        tokens = self.lemmatize_tokens(tokens)
         tokens = self.remove_stopwords(tokens)
 
         return ' '.join(tokens)
