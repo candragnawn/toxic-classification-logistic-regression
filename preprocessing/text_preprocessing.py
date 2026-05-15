@@ -77,6 +77,13 @@ class TextPreprocessorNonStopword:
             if word not in self.stop_words
         ]
 
+    def expand_contraction(self, text):
+        return contractions.fix(text)
+    
+    def lemmatize_tokens(self, tokens):
+        lemmatizer_nonsw = WordNetLemmatizer()
+        return [lemmatizer_nonsw.lemmatize(token) for token in tokens]
+        
     def preprocess_text_non_stopword(self, text):
         text = self.expand_contraction(text)
         text = self.clean_text(text)
