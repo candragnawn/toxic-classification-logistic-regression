@@ -6,6 +6,8 @@ nltk.download('punkt')
 nltk.download('stopwords')
 nltk.download('wordnet')
 from nltk.stem import WordNetLemmatizer
+
+
 import contractions
 
 
@@ -76,8 +78,10 @@ class TextPreprocessorNonStopword:
         ]
 
     def preprocess_text_non_stopword(self, text):
+        text = self.expand_contraction(text)
         text = self.clean_text(text)
         tokens = self.tokenize_text(text)
+        tokens = self.lemmatize_tokens(tokens)
 
         return ' '.join(tokens)
 
