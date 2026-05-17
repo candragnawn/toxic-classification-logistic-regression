@@ -22,6 +22,7 @@ class TextPreprocessor:
     def __init__(self):
         self.stop_words = set(stopwords.words('english'))
         self.lemmatizer = WordNetLemmatizer()
+        self.lemmatizer_nonsw = WordNetLemmatizer()
 
     def clean_text(self, text):
         text = text.lower()
