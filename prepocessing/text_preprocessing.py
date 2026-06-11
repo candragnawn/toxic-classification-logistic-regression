@@ -3,10 +3,19 @@ import nltk
 from nltk.tokenize import word_tokenize
 nltk.download('punkt')
 nltk.download('stopwords')
+<<<<<<< Updated upstream:prepocessing/text_preprocessing.py
 
 nltk.download('tokenizers/punkt/english.pickle')
 
 
+=======
+nltk.download('wordnet')
+from nltk.stem import WordNetLemmatizer
+
+
+import contractions
+
+>>>>>>> Stashed changes:preprocessing/text_preprocessing.py
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 
